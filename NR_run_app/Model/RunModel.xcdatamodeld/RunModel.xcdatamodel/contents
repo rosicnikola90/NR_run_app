@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Run" representedClassName=".Run" syncable="YES" codeGenerationType="class">
+        <attribute name="avrPace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" attributeType="String" syncable="YES"/>
+        <attribute name="locations" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Run" positionX="1208.03515625" positionY="-1792.703125" width="128" height="120"/>
+    </elements>
+</model>
