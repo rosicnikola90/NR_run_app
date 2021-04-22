@@ -35,6 +35,12 @@
                                     <action selector="startButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kay-DW-61F"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="app must be authorizated for collecting location data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="2hv-HY-AVL">
+                                <rect key="frame" x="0.0" y="389" width="320" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.14742350209999999" blue="0.16706378120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
@@ -42,9 +48,12 @@
                             <constraint firstItem="Z5z-1Y-HR4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="GkL-Yh-Q3T"/>
                             <constraint firstItem="Z5z-1Y-HR4" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="NHr-do-lgW"/>
                             <constraint firstItem="5w8-pD-7bm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SGS-pe-kyF"/>
+                            <constraint firstItem="2hv-HY-AVL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WYP-Ey-yCX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5w8-pD-7bm" secondAttribute="bottom" constant="50" id="jSp-mO-MnC"/>
                             <constraint firstItem="5w8-pD-7bm" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="kc8-EC-8Kq"/>
                             <constraint firstItem="Z5z-1Y-HR4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rPk-Fc-6dX"/>
+                            <constraint firstItem="2hv-HY-AVL" firstAttribute="top" secondItem="Z5z-1Y-HR4" secondAttribute="bottom" constant="5" id="sBM-ul-aLU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2hv-HY-AVL" secondAttribute="trailing" id="sch-xV-lgN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -56,6 +65,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="errorLabel" destination="2hv-HY-AVL" id="Zcj-ul-RrF"/>
                         <outlet property="mapView" destination="Z5z-1Y-HR4" id="efq-UV-b3z"/>
                         <outlet property="startButtonOutlet" destination="5w8-pD-7bm" id="3e3-IN-sLM"/>
                         <segue destination="iDh-bj-UIT" kind="show" identifier="startCountToRun" id="eUO-Dq-kKH"/>
@@ -242,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kE-Yu-zxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2344" y="214"/>
+            <point key="canvasLocation" x="2006" y="5"/>
         </scene>
         <!--RunsVC View Controller-->
         <scene sceneID="fPE-qb-wkT">
@@ -280,7 +290,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3WA-78-1Cc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834" y="1173"/>
+            <point key="canvasLocation" x="1446" y="873"/>
         </scene>
         <!--Run Detail View Controller-->
         <scene sceneID="Qam-7D-mm6">
@@ -379,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHv-em-ze2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802" y="1007"/>
+            <point key="canvasLocation" x="3056" y="817"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ah2-Af-G6u">

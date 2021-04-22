@@ -9,7 +9,8 @@
 import UIKit
 
 @available(iOS 10.0, *)
-class CountViewController: UIViewController {
+
+ class CountViewController: UIViewController {
 
     var counting = 3
     
@@ -23,10 +24,15 @@ class CountViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-      
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        CountLabel.isHidden = false
+        CountLabel.font = UIFont(name: CountLabel.font.fontName, size: 30)
+        CountLabel.text = "GET READY"
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector (self.timerMethod), userInfo: nil, repeats: true)
+        
     }
+    
     
     @objc func timerMethod ()  {
         CountLabel.font = UIFont(name: CountLabel.font.fontName, size: 150)
@@ -47,14 +53,6 @@ class CountViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-            CountLabel.isHidden = false
-            CountLabel.font = UIFont(name: CountLabel.font.fontName, size: 30)
-            CountLabel.text = "GET READY"
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector (self.timerMethod), userInfo: nil, repeats: true)
-        
-        }
     
     deinit {
         print("deinit CountVC")

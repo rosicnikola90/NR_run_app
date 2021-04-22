@@ -32,6 +32,7 @@ class RunDetailViewController: SharedVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Run Details"
+        mapView.isUserInteractionEnabled = false
     
     }
     
@@ -48,14 +49,14 @@ class RunDetailViewController: SharedVC {
         //print("detalji: \(String(describing: runForDetal?.locations))")
     }
     
-    private func updateUIWith ( run: Run) {
+     func updateUIWith ( run: Run) {
         timeLabel.text = run.duration
         distanceLabel.text = run.distance
         avrPaceLabel.text = run.avrPace
         dateLabel.text = run.date
     }
     
-    private func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor  = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
@@ -63,7 +64,7 @@ class RunDetailViewController: SharedVC {
         return renderer
     }
     
-   private func setupMapView() {
+    func setupMapView() {
             let overlay = addLastRunToMap()
             if mapView.overlays.count > 0 {
                 mapView.removeOverlays(mapView.overlays)
@@ -71,7 +72,7 @@ class RunDetailViewController: SharedVC {
             mapView.addOverlay(overlay)
     }
     
-   private func addLastRunToMap() -> MKPolyline {
+    func addLastRunToMap() -> MKPolyline {
         
         var coordinate =  [CLLocationCoordinate2D]()
         for location in locations {
@@ -84,7 +85,7 @@ class RunDetailViewController: SharedVC {
         return MKPolyline(coordinates: coordinate, count: locations.count)
     }
     
-   private func centerMapOnPrevRoute(locations: [Location]) -> MKCoordinateRegion {
+    func centerMapOnPrevRoute(locations: [Location]) -> MKCoordinateRegion {
         let initialLoc =  locations[0]
         var minLat = initialLoc.latitude
         var minLng = initialLoc.longitude
@@ -100,7 +101,7 @@ class RunDetailViewController: SharedVC {
         return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2, longitude: (minLng + maxLng)/2), span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat)*1.4, longitudeDelta: (maxLng - minLng)*1.4))
     }
     
-    private func getLocationsFromRun (run:Run) {
+     func getLocationsFromRun (run:Run) {
         if run.locations != nil {
         for (index, _ ) in run.locations!.enumerated() {
             if (index == 0 || index % 2 == 0) {

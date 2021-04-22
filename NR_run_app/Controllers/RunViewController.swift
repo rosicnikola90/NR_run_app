@@ -11,7 +11,8 @@ import MapKit
 import CoreData
 
 @available(iOS 11.0, *)
-class RunViewController: SharedVC {
+
+ class RunViewController: SharedVC {
     
     @IBOutlet weak var pauseButton: UIButton!
     
@@ -37,17 +38,19 @@ class RunViewController: SharedVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        manager?.delegate = self
-        manager?.distanceFilter = 10
+        SharedVC.manager?.delegate = self
+        SharedVC.manager?.distanceFilter = 10
         startRun()
+        
     }
     
     func startRun() {
-        manager?.startUpdatingLocation()
+        SharedVC.manager?.startUpdatingLocation()
         startTimer()
         pauseButton.isHidden = false
         startButton.isHidden = true
@@ -55,7 +58,9 @@ class RunViewController: SharedVC {
     }
     
     func endRun() {
-        manager?.stopUpdatingLocation()
+        SharedVC.manager?.stopUpdatingLocation()
+        SharedVC.manager?.allowsBackgroundLocationUpdates = false
+        SharedVC.manager?.showsBackgroundLocationIndicator = false
         // save RUN
     }
     
@@ -63,7 +68,7 @@ class RunViewController: SharedVC {
         startLocation = nil
         lastLocation = nil
         timer.invalidate()
-        manager?.stopUpdatingLocation()
+        SharedVC.manager?.stopUpdatingLocation()
         pauseButton.isHidden = true
         resumetButton.isHidden = false
         startButton.isHidden = false
@@ -128,8 +133,7 @@ class RunViewController: SharedVC {
         return (((value/1000) * divisor).rounded() / divisor ) 
     }
     
-    private func saveRun () {
-        
+    func saveRun () {
         let newRun = Run (context:context)
         newRun.date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .medium)
         newRun.distance = String(roundMeters(value:runDistance, places: 2))
@@ -153,9 +157,13 @@ class RunViewController: SharedVC {
 @available(iOS 11.0, *)
 extension RunViewController : CLLocationManagerDelegate {
     
+   // provera statusa
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
-        ()
+            startRun()
+        }
+        else if status == .denied {
+            pauseRun()
         }
     }
     

@@ -8,25 +8,28 @@
 
 import UIKit
 import MapKit
-import CoreLocation
+//import CoreLocation
 
 @available(iOS 11.0, *)
+
 class SharedVC: UIViewController, MKMapViewDelegate {
     
-    var manager: CLLocationManager?
+   static var manager: CLLocationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager = CLLocationManager()
-        manager?.desiredAccuracy = kCLLocationAccuracyBest
-        manager?.activityType = .fitness
-        manager?.allowsBackgroundLocationUpdates = true
-        manager?.showsBackgroundLocationIndicator = true
+        if SharedVC.manager == nil {
+            SharedVC.manager = CLLocationManager()
+            SharedVC.manager?.desiredAccuracy = kCLLocationAccuracyBest
+            SharedVC.manager?.activityType = .fitness
+            SharedVC.manager?.allowsBackgroundLocationUpdates = true
+            SharedVC.manager?.showsBackgroundLocationIndicator = true
+        }
     }
     
     func checkLocationAuthStatus() {
-        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
-            manager?.requestWhenInUseAuthorization()
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse  {
+            SharedVC.manager?.requestWhenInUseAuthorization()
         }
     }
     
