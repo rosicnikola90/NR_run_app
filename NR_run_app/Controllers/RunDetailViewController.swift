@@ -62,6 +62,7 @@ class RunDetailViewController: SharedVC {
         renderer.strokeColor  = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
         renderer.lineWidth = 4
         return renderer
+        
     }
     
     func setupMapView() {
